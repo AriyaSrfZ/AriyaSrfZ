@@ -3,6 +3,12 @@
 </p>
 
 <p align="center">
+  <a href="https://ariya-sarrafzadeh.ir">
+    <img src="./assets/avatar.png" alt="Ariya Sarrafzadeh" width="140" height="140" />
+  </a>
+</p>
+
+<p align="center">
   <b>I engineer zero-financial-drift state machines, sub-30ms switching rails, and high-throughput telecom switches.</b><br>
   Distributed ACID ledgers · ISO 8583 payment switches · SMPP 3.4 telecom windowing · Sub-15ms fraud telemetry
 </p>
