@@ -1,0 +1,32 @@
+name: arcade
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: arcade
+  cancel-in-progress: false
+
+jobs:
+  breakout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: abozanona/pacman-contribution-graph@v5.0.0
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          games: breakout
+
+      - uses: crazy-max/ghaction-github-pages@v5.0.0
+        with:
+          target_branch: output
+          build_dir: dist
+          keep_history: true
+          commit_message: 'arcade: update breakout svgs'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
