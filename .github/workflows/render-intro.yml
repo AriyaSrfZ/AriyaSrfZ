@@ -1,0 +1,37 @@
+name: Render VHS Intro
+
+on:
+  push:
+    paths:
+      - 'intro.tape'
+      - 'setup_env.sh'
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Render VHS Tape
+        uses: charmbracelet/vhs-action@v2
+        with:
+          path: 'intro.tape'
+
+      - name: Commit and Push Updated GIF
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add assets/intro.gif
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes detected in GIF"
+          else
+            git commit -m "chore(vhs): auto-render intro.gif [skip ci]"
+            git push
+          fi
