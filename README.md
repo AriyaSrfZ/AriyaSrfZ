@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0B0F19,100:0EA5E9&height=180&section=header&text=Ariya%20Sarrafzadeh&fontColor=ffffff&fontSize=44&fontAlignY=36&desc=Systems%20Architect%20%C2%B7%20High-Throughput%20Infrastructure%20%C2%B7%20Fintech%20Switches&descAlignY=58&descSize=16" alt="Ariya Sarrafzadeh, Systems Architect & Infrastructure Engineer" width="100%">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:090A0C,100:0EA5E9&height=180&section=header&text=Ariya%20Sarrafzadeh&fontColor=ffffff&fontSize=44&fontAlignY=36&desc=Systems%20Architect%20%C2%B7%20High-Throughput%20Infrastructure%20%C2%B7%20Fintech%20Switches&descAlignY=58&descSize=16" alt="Ariya Sarrafzadeh, Systems Architect & Infrastructure Engineer" width="100%">
 </p>
 
 <p align="center">
@@ -23,9 +23,20 @@
   <img src="https://img.shields.io/badge/Linux_Kernel-FCC624?style=flat-square&logo=linux&logoColor=black" alt="Linux">
 </p>
 
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="25%">⚡ <b>Throughput Core</b><br><code>50,000+ TPS</code></td>
+      <td align="center" width="25%">🛡️ <b>PSP Failover</b><br><code>&lt; 30ms SLA</code></td>
+      <td align="center" width="25%">🔒 <b>Financial Drift</b><br><code>0.00% (2PC Mutex)</code></td>
+      <td align="center" width="25%">📡 <b>Edge Fraud Radar</b><br><code>&lt; 15ms Telemetry</code></td>
+    </tr>
+  </table>
+</div>
+
 <!-- TERMINAL:START -->
 <p align="center">
-  <img src="./assets/intro.gif" width="920" alt="Animated terminal demo session: checking system specs, node status, role invariants, and running ariya-cli infrastructure diagnostics." />
+  <img src="./assets/intro.gif" width="940" alt="Animated terminal demo session: checking system specs, node status, role invariants, and running ariya-cli infrastructure diagnostics." />
 </p>
 <!-- TERMINAL:END -->
 
@@ -137,7 +148,7 @@ Ultra-low-latency distributed redirection switch built with strict Redis SETNX m
 </table>
 
 <details>
-<summary><b>Off the clock: High-Performance Simulation & 3D Web Engines</b></summary>
+<summary><b>Off the clock: High-Performance Simulation & 3D Shaders</b></summary>
 <br>
 Experimenting with browser-based WebGL/WebGPU physics engines, spatial rendering, orbital Kepler solvers, and arcade mechanics rendered directly on the browser canvas.
 </details>
@@ -156,7 +167,7 @@ Experimenting with browser-based WebGL/WebGPU physics engines, spatial rendering
 <!-- ARCADE:END -->
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,100:0B0F19&height=90&section=footer" alt="" width="100%">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,100:090A0C&height=90&section=footer" alt="" width="100%">
 </p>
 
 ---

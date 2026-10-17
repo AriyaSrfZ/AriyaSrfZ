@@ -2,9 +2,9 @@
 Output "assets/intro.gif"
 
 Set Shell "bash"
-Set FontSize 16
-Set Width 950
-Set Height 480
+Set FontSize 15
+Set Width 960
+Set Height 520
 Set Padding 20
 Set Theme "Catppuccin Mocha"
 Set WindowBar Colorful
@@ -16,21 +16,21 @@ Show
 Sleep 600ms
 
 Type "whoami --spec"
-Sleep 400ms
+Sleep 350ms
 Enter
-Sleep 800ms
+Sleep 1200ms
 
 Type "node status: ariya-sarrafzadeh.ir [NOMINAL]"
-Sleep 300ms
+Sleep 350ms
 Enter
 Sleep 800ms
 
 Type "sys --query role"
-Sleep 400ms
+Sleep 350ms
 Enter
 Sleep 800ms
 
 Type "ariya-cli --diagnose --subsystem=all"
-Sleep 400ms
+Sleep 350ms
 Enter
-Sleep 2s
+Sleep 2500ms
