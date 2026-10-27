@@ -55,9 +55,38 @@ Enterprise workflow automation and daily career triage engine deployed across th
   1. Pings local Ollama model registry (`11434`) and cluster health.
   2. Logs health state and triggers automated alerts if services degrade.
 
+### 4. Autonomous Career Engine (Multi-Site + ATS + Executive Recon)
+* **File**: `workflows/04_full_autonomous_job_hunt_and_outreach_pipeline.json`
+* **Workflow ID in n8n**: `UiBnSNo38poN2946`
+* **Architecture**: 15 distinct nodes across 5 parallel ingestion lanes (RemoteOK, Jobicy, GitHub Bounties, LinkedIn Target Pipeline, Email Monitor) feeding into Company Recon, 200-char Connection Drafter, Local Ollama ATS Engine, and Telegram Executive Dispatch.
+
 ---
 
-## 3. Quickstart & Operations
+## 3. Imported Battle-Tested Community Templates
+
+Curated and imported directly from top-starred open-source GitHub automation repositories:
+
+1. **LinkedIn Job Automation & LangChain Agent**:
+   * **Source**: `CoderOO7/n8n-automate-job-apply`
+   * **File**: `templates/linkedin_job_automation_community.json`
+   * **Workflow ID in n8n**: `QAOfp2Tfh4tZ9GD9`
+   * **Features**: Crawl4AI job scraping, compare datasets deduplication, split-in-batches looping, LangChain job scoring agent, memory buffer window, LinkedIn profile search builder, cold outreach generator, and Postgres/Google Sheets storage.
+
+2. **CV Screening AI Engine**:
+   * **Source**: `enescingoz/awesome-n8n-templates` (HR & Recruitment)
+   * **File**: `templates/cv_screening_ai.json`
+   * **Workflow ID in n8n**: `YyQWKqD6NKdOrrV8`
+   * **Features**: Document PDF extraction, ATS parameter scoring, and qualification grading.
+
+3. **AI Email Auto-Responder (Ollama)**:
+   * **Source**: `enescingoz/awesome-n8n-templates` (Email Automation)
+   * **File**: `templates/ai_email_autoresponder_ollama.json`
+   * **Workflow ID in n8n**: `ANKoOwQTb1azwxr6`
+   * **Features**: IMAP email polling, spam filtering, local Ollama classification, and automated reply draft generation.
+
+---
+
+## 4. Quickstart & Operations
 
 ### Starting the Local Tunnel
 If accessing from the local workstation, ensure port 5678 is routed:
