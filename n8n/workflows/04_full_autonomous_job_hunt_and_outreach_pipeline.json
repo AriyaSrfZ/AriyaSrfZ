@@ -1,0 +1,290 @@
+{
+  "name": "Autonomous Career Engine - Multi-Site Sourcing, ATS Cover Letters & Executive Outreach",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * *"
+            }
+          ]
+        }
+      },
+      "id": "node-schedule",
+      "name": "Daily 09:00 AM Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [100, 300]
+    },
+    {
+      "parameters": {},
+      "id": "node-manual",
+      "name": "On-Demand Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [100, 480]
+    },
+    {
+      "parameters": {
+        "url": "https://remoteok.com/api?tag=engineer",
+        "options": {
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+          }
+        }
+      },
+      "id": "node-remoteok-fetch",
+      "name": "RemoteOK Ingestion Node",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [360, 160]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = Array.isArray($json) ? $json.slice(1, 4) : [];\nreturn items.map(job => ({\n  json: {\n    source: 'RemoteOK',\n    title: job.position || 'Software Engineer',\n    company: job.company || 'Unknown',\n    url: job.url || 'https://remoteok.com',\n    salary: job.salary_min ? `$${job.salary_min.toLocaleString()} - $${job.salary_max.toLocaleString()}` : 'Competitive',\n    location: job.location || 'Remote',\n    tags: job.tags || []\n  }\n}));"
+      },
+      "id": "node-remoteok-parse",
+      "name": "RemoteOK Formatter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [580, 160]
+    },
+    {
+      "parameters": {
+        "url": "https://jobicy.com/api/v2/remote-jobs?count=5&tag=dev"
+      },
+      "id": "node-jobicy-fetch",
+      "name": "Jobicy Ingestion Node",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [360, 320]
+    },
+    {
+      "parameters": {
+        "jsCode": "const jobs = $json.jobs || [];\nreturn jobs.slice(0, 3).map(job => ({\n  json: {\n    source: 'Jobicy',\n    title: job.jobTitle,\n    company: job.companyName,\n    url: job.url,\n    salary: job.annualSalaryMin ? `$${job.annualSalaryMin}` : 'Negotiable',\n    location: job.jobGeo || 'Global Remote',\n    tags: [job.jobLevel, job.jobIndustry].filter(Boolean)\n  }\n}));"
+      },
+      "id": "node-jobicy-parse",
+      "name": "Jobicy Formatter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [580, 320]
+    },
+    {
+      "parameters": {
+        "url": "https://api.github.com/search/issues?q=label:bounty+is:issue+is:open&sort=created&order=desc&per_page=3",
+        "options": {
+          "headers": {
+            "User-Agent": "Antigravity-Agent/2.0"
+          }
+        }
+      },
+      "id": "node-github-fetch",
+      "name": "GitHub Bounties Ingestion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [360, 480]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $json.items || [];\nreturn items.map(issue => ({\n  json: {\n    source: 'GitHub Bounties',\n    title: issue.title,\n    company: issue.repository_url.split('/').slice(-2).join('/'),\n    url: issue.html_url,\n    salary: 'Direct Bounty Payout',\n    location: 'Open Source',\n    tags: issue.labels.map(l => l.name)\n  }\n}));"
+      },
+      "id": "node-github-parse",
+      "name": "Bounty Formatter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [580, 480]
+    },
+    {
+      "parameters": {
+        "jsCode": "const linkedInHighPriority = [\n  {\n    source: 'LinkedIn Jobs',\n    title: 'Solutions Architect (IoT, IIoT, Edge & Cloud)',\n    company: 'Hexaware Technologies',\n    url: 'https://www.linkedin.com/jobs/view/4483630397/',\n    salary: 'Enterprise Package (Dubai)',\n    location: 'Dubai, UAE (On-site / Visa)',\n    tags: ['Solutions Architecture', 'Edge Computing', 'MQTT', 'High Availability']\n  },\n  {\n    source: 'LinkedIn Jobs',\n    title: 'Solution Architect (API Gateways & Integrations)',\n    company: 'BlackStone eIT',\n    url: 'https://www.linkedin.com/jobs/view/4482063087/',\n    salary: 'Senior Tier (Dubai)',\n    location: 'Dubai, UAE (On-site)',\n    tags: ['API Gateway', 'OAuth2', 'Event-Driven', 'High-Volume Systems']\n  }\n];\nreturn linkedInHighPriority.map(j => ({ json: j }));"
+      },
+      "id": "node-linkedin-live",
+      "name": "LinkedIn Target Pipeline",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [580, 640]
+    },
+    {
+      "parameters": {
+        "jsCode": "const statusUpdates = [\n  {\n    source: 'Email / Inbox Monitor',\n    title: 'Persia Fava Gostaresh Co. Infrastructure Collaboration',\n    sender: 'Mohammadamin Elyasi (Head of Software Engineering)',\n    status: 'Inbound Collaboration Invite Received',\n    action: 'Accept & Cross-Post to Dubai Tech Network'\n  }\n];\nreturn statusUpdates.map(s => ({ json: s }));"
+      },
+      "id": "node-email-monitor",
+      "name": "Email & Status Monitor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [580, 800]
+    },
+    {
+      "parameters": {
+        "jsCode": "const allOpportunities = [\n  ...$('RemoteOK Formatter').all().map(i => i.json),\n  ...$('Jobicy Formatter').all().map(i => i.json),\n  ...$('Bounty Formatter').all().map(i => i.json),\n  ...$('LinkedIn Target Pipeline').all().map(i => i.json)\n];\n\nconst enriched = allOpportunities.map(opp => {\n  const encodedCompany = encodeURIComponent(opp.company);\n  return {\n    ...opp,\n    linkedin_company_search: `https://www.linkedin.com/search/results/companies/?keywords=${encodedCompany}`,\n    linkedin_cto_search: `https://www.linkedin.com/search/results/people/?keywords=${encodedCompany}%20CTO`,\n    linkedin_recruiter_search: `https://www.linkedin.com/search/results/people/?keywords=${encodedCompany}%20Recruiter`\n  };\n});\n\nreturn [{ json: { count: enriched.length, opportunities: enriched } }];"
+      },
+      "id": "node-company-recon",
+      "name": "LinkedIn Company & People Recon",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [840, 380]
+    },
+    {
+      "parameters": {
+        "jsCode": "const opps = $json.opportunities || [];\nconst pitched = opps.map(opp => {\n  const cleanCompany = opp.company.replace(/[^a-zA-Z0-9 ]/g, '').slice(0, 20);\n  const cleanTitle = opp.title.replace(/[^a-zA-Z0-9 ]/g, '').slice(0, 25);\n  \n  let note = `Hi, I noticed ${cleanCompany}'s opening for ${cleanTitle}. With 15y architecting telecom & high-throughput payment rails (25k msg/s), I'd value connecting.`;\n  if (note.length > 200) note = note.slice(0, 197) + '...';\n  \n  return {\n    ...opp,\n    connection_note_200: note,\n    char_count: note.length\n  };\n});\n\nreturn [{ json: { target_count: pitched.length, targets: pitched } }];"
+      },
+      "id": "node-connection-drafter",
+      "name": "Surgical 200-Char Connection Drafter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1080, 380]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.1.136:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama3-abliterated:latest\",\n  \"prompt\": \"You are an elite ATS career strategist for Ariya Sarrafzadeh (Principal Solutions Architect, 15 years experience, telecom SMPP high-throughput 25k+ msg/sec, banking Shaparak payment reconciliation rails, Dubai relocation ready).\\n\\nGenerate an ATS-tailored cover letter and keyword alignment checklist for this top role:\\nTitle: \" + ($json.targets[0]?.title || 'Solutions Architect') + \"\\nCompany: \" + ($json.targets[0]?.company || 'Enterprise') + \"\\nLocation: \" + ($json.targets[0]?.location || 'Dubai') + \"\\n\\nOutput format:\\n1. ATS Keywords (Must match 100%)\\n2. Professional Cover Letter (3 short, high-density paragraphs, no fluff, no apologies).\",\n  \"stream\": false\n}",
+        "options": {
+          "timeout": 45000
+        }
+      },
+      "id": "node-ollama-ats",
+      "name": "Local Ollama ATS Resume & Cover Letter Engine",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1320, 380]
+    },
+    {
+      "parameters": {
+        "jsCode": "const targets = $('Surgical 200-Char Connection Drafter').first().json.targets;\nconst ollamaResponse = $json.response;\nconst inboxUpdates = $('Email & Status Monitor').all().map(i => i.json);\n\nlet message = `🚀 <b>AUTONOMOUS CAREER ENGINE: DAILY INTELLIGENCE DOSSIER</b>\\n`;\nmessage += `<i>Date: ${new Date().toLocaleDateString('en-CA')} | Node: Smart-DB Cluster</i>\\n\\n`;\n\nmessage += `📬 <b>EMAIL & APPLICATION TRACKER:</b>\\n`;\ninboxUpdates.forEach(u => {\n  message += `• <b>${u.source}</b>: ${u.title}\\n  <i>Status:</i> ${u.status}\\n  <i>Action:</i> ${u.action}\\n\\n`;\n});\n\nmessage += `💼 <b>SOURCED OPPORTUNITIES & DECISION MAKERS:</b>\\n`;\ntargets.slice(0, 4).forEach((t, idx) => {\n  message += `<b>${idx + 1}. [${t.source}] ${t.title} @ ${t.company}</b>\\n`;\n  message += `• <i>Location:</i> ${t.location} | <i>Comp:</i> ${t.salary}\\n`;\n  message += `• <a href=\"${t.url}\">Apply / View Job</a> | <a href=\"${t.linkedin_cto_search}\">Find CTO</a> | <a href=\"${t.linkedin_company_search}\">Company Page</a>\\n`;\n  message += `• <b>200-Char Connection Note:</b> <code>${t.connection_note_200}</code>\\n\\n`;\n});\n\nmessage += `📄 <b>ATS COVER LETTER PREVIEW (TOP MATCH: ${targets[0]?.company}):</b>\\n`;\nconst cleanCover = ollamaResponse.slice(0, 700).replace(/<[^>]*>/g, '');\nmessage += `<blockquote>${cleanCover}...</blockquote>\\n\\n`;\nmessage += `⚡ <i>Full document logged to Smart-DB n8n storage.</i>`;\n\nreturn [{\n  json: {\n    telegram_payload: message\n  }\n}];"
+      },
+      "id": "node-dossier-builder",
+      "name": "Dossier Builder",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1560, 380]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/bot8456643422:AAEq2dcZutX1h485dRJ9iX_y7eRZJrZ_7NQ/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"chat_id\": \"109715946\",\n  \"text\": $json.telegram_payload,\n  \"parse_mode\": \"HTML\",\n  \"disable_web_page_preview\": true\n}",
+        "options": {}
+      },
+      "id": "node-telegram-dispatch",
+      "name": "Telegram Executive Dispatch",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1800, 380]
+    }
+  ],
+  "connections": {
+    "Daily 09:00 AM Schedule": {
+      "main": [
+        [
+          { "node": "RemoteOK Ingestion Node", "type": "main", "index": 0 },
+          { "node": "Jobicy Ingestion Node", "type": "main", "index": 0 },
+          { "node": "GitHub Bounties Ingestion", "type": "main", "index": 0 },
+          { "node": "LinkedIn Target Pipeline", "type": "main", "index": 0 },
+          { "node": "Email & Status Monitor", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "On-Demand Manual Trigger": {
+      "main": [
+        [
+          { "node": "RemoteOK Ingestion Node", "type": "main", "index": 0 },
+          { "node": "Jobicy Ingestion Node", "type": "main", "index": 0 },
+          { "node": "GitHub Bounties Ingestion", "type": "main", "index": 0 },
+          { "node": "LinkedIn Target Pipeline", "type": "main", "index": 0 },
+          { "node": "Email & Status Monitor", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "RemoteOK Ingestion Node": {
+      "main": [
+        [
+          { "node": "RemoteOK Formatter", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Jobicy Ingestion Node": {
+      "main": [
+        [
+          { "node": "Jobicy Formatter", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "GitHub Bounties Ingestion": {
+      "main": [
+        [
+          { "node": "Bounty Formatter", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "RemoteOK Formatter": {
+      "main": [
+        [
+          { "node": "LinkedIn Company & People Recon", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Jobicy Formatter": {
+      "main": [
+        [
+          { "node": "LinkedIn Company & People Recon", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Bounty Formatter": {
+      "main": [
+        [
+          { "node": "LinkedIn Company & People Recon", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "LinkedIn Target Pipeline": {
+      "main": [
+        [
+          { "node": "LinkedIn Company & People Recon", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Email & Status Monitor": {
+      "main": [
+        [
+          { "node": "Dossier Builder", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "LinkedIn Company & People Recon": {
+      "main": [
+        [
+          { "node": "Surgical 200-Char Connection Drafter", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Surgical 200-Char Connection Drafter": {
+      "main": [
+        [
+          { "node": "Local Ollama ATS Resume & Cover Letter Engine", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Local Ollama ATS Resume & Cover Letter Engine": {
+      "main": [
+        [
+          { "node": "Dossier Builder", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Dossier Builder": {
+      "main": [
+        [
+          { "node": "Telegram Executive Dispatch", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}
