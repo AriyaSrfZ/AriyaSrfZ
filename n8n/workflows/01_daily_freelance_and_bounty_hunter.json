@@ -1,0 +1,90 @@
+{
+  "name": "Daily Routine - Freelance & Bounty Hunter",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * *"
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Schedule Trigger (09:00 AM)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual / Test Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [220, 480]
+    },
+    {
+      "parameters": {
+        "jsCode": "const targets = [\n  {\n    platform: \"LinkedIn\",\n    tier: \"Urgent / High Priority\",\n    title: \"Hexaware Technologies - Solutions Architect (Dubai)\",\n    url: \"https://www.linkedin.com/jobs/view/4483630397/\",\n    summary: \"0 applicants, Easy Apply, IoT/Edge/Cloud Architecture. Fits high-throughput gateway background.\"\n  },\n  {\n    platform: \"LinkedIn\",\n    tier: \"Inbound Lead\",\n    title: \"Mohammadamin Elyasi Collaboration\",\n    url: \"https://www.linkedin.com/messaging/\",\n    summary: \"Co-author infrastructure showcase post on Feresta SMS & Techbon.\"\n  },\n  {\n    platform: \"Reddit\",\n    tier: \"Active Client Contract\",\n    title: \"API Automation Project for Cloud Device Farms\",\n    url: \"https://www.reddit.com/r/developers_hire/comments/1xcejo4/hiring_developer_for_an_api_automation_project\",\n    summary: \"r/developers_hire high-signal client looking for robust headless automation and proxy orchestration.\"\n  },\n  {\n    platform: \"Bounties\",\n    tier: \"USDC Crypto Payout\",\n    title: \"Superteam Earn Solana Dev Bounties\",\n    url: \"https://earn.superteam.fun/bounties/\",\n    summary: \"Backend scripts, Telegram bots, and Solana indexer tasks paid directly in USDC.\"\n  }\n];\n\nconst formattedSummary = targets.map((t, idx) => \n  `<b>${idx + 1}. [${t.platform}] ${t.title}</b>\\n` +\n  `• <i>Tier:</i> ${t.tier}\\n` +\n  `• <i>Notes:</i> ${t.summary}\\n` +\n  `• <i>Link:</i> ${t.url}`\n).join('\\n\\n');\n\nreturn [{\n  json: {\n    timestamp: new Date().toISOString(),\n    target_count: targets.length,\n    targets: targets,\n    formatted_text: `🎯 <b>Daily Freelance & Lead Triage Report</b>\\n<i>Date: ${new Date().toLocaleDateString('en-CA')}</i>\\n\\n` + formattedSummary\n  }\n}];"
+      },
+      "id": "aggregate-targets",
+      "name": "Target Aggregator",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 380]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/bot8456643422:AAEq2dcZutX1h485dRJ9iX_y7eRZJrZ_7NQ/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"chat_id\": \"109715946\",\n  \"text\": $json.formatted_text,\n  \"parse_mode\": \"HTML\",\n  \"disable_web_page_preview\": true\n}",
+        "options": {}
+      },
+      "id": "telegram-alert",
+      "name": "Telegram Bot Dispatch",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [740, 380]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger (09:00 AM)": {
+      "main": [
+        [
+          {
+            "node": "Target Aggregator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual / Test Trigger": {
+      "main": [
+        [
+          {
+            "node": "Target Aggregator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Target Aggregator": {
+      "main": [
+        [
+          {
+            "node": "Telegram Bot Dispatch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

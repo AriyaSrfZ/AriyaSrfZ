@@ -1,0 +1,68 @@
+{
+  "name": "Antigravity Agentic Webhook Engine",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "antigravity",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Antigravity Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "antigravity"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.1.136:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama3-abliterated:latest\",\n  \"prompt\": \"Process this agent request from Antigravity IDE:\\n\" + JSON.stringify($json.body),\n  \"stream\": false\n}",
+        "options": {}
+      },
+      "id": "ollama-inference",
+      "name": "Local Ollama LLM Inference",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\n  json: {\n    status: \"success\",\n    timestamp: new Date().toISOString(),\n    source: \"n8n-smart-db\",\n    ai_response: $json.response,\n    total_duration_ns: $json.total_duration\n  }\n}];"
+      },
+      "id": "format-response",
+      "name": "Format Agent Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 300]
+    }
+  ],
+  "connections": {
+    "Antigravity Webhook": {
+      "main": [
+        [
+          {
+            "node": "Local Ollama LLM Inference",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Local Ollama LLM Inference": {
+      "main": [
+        [
+          {
+            "node": "Format Agent Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "name": "Infrastructure & Ollama Heartbeat Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "id": "schedule-interval",
+      "name": "Every 30 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "http://192.168.1.136:11434/api/tags",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "id": "ping-ollama",
+      "name": "Check Local Ollama",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const models = $json.models ? $json.models.map(m => m.name).join(', ') : 'None';\nreturn [{\n  json: {\n    status: 'healthy',\n    node: 'smart-db (192.168.1.136)',\n    ollama_models: models,\n    checked_at: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "format-health",
+      "name": "Health Status Parser",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [720, 300]
+    }
+  ],
+  "connections": {
+    "Every 30 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Check Local Ollama",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Local Ollama": {
+      "main": [
+        [
+          {
+            "node": "Health Status Parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
