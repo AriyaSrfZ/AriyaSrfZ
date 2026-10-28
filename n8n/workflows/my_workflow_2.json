@@ -1,0 +1,720 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "171ff4c5-b238-4b4c-8a27-a5a9564bd673",
+              "name": "MyCV",
+              "type": "string",
+              "value": "Ariya Sarrafzadeh Tehran, Iran (Open to Relocation: Dubai, UAE) | +98 912 311 7965 ariasg2002@gmail.com | linkedin.com/in/ariya-sarrafzadeh-2b505141 Professional Summary Senior Technical Product Leader with 15+ years of experience architecting, building, and operating high-availability fintech platforms. My expertise is at the intersection of product innovation, technical operations, and deep domain expertise in payments, fraud, and national-level compliance. Proven history of acting as the sole point of command for complex technical, legal, and governmental challenges.  Core Competencies Product Management: Technical Product Management, New Product Development (NPD), Product Lifecycle (PLC), Technical Roadmapping, Agile/Scrum Leadership, PRDs & User Stories. Fintech & Payments: Fraud Detection & Risk (AML), Payments Architecture (C2C, Wallet), Multi-Party Reconciliation, PSP & Bank Integration, FATA & Shaparak Compliance. Technical Operations: High-Availability Monitoring (Prometheus, Grafana, ELK), Log Engineering (Grok), API Design & Microservices, Incident Management. Data & Engineering: Big Data (Elasticsearch), Databases (MongoDB, MySQL, PostgreSQL), Backend Scripting (Java, Python, Shell). Tools: Jira, Confluence, Asana, ClickUp. Professional Experience Senior Technical Product ManagerApr 2025 \u2013 Present P.G IT Solutions / Persia Fava Gostaresh | Tehran, Iran Architecting a new multi-million dollar business plan for an API gateway, defining the complete 12-month roadmap, PRDs, and technical epics. Leading the development of a multi-petabyte 'Smart DB' for SMS advertising, using Elasticsearch to enable complex, text-based query segmentation (75% complete). Designing the end-to-end architecture for a new User Authentication & Authorization (UAA) microservice to standardize identity across all products. Act as the single point of command and technical liaison between the CEO and all outsourced development teams (Backend, Frontend, UI/UX). Architected 4-6 new internal SaaS platforms from the ground up, creating all technical flows and processes in an undisciplined 'greenfield' environment. Senior Payments & Fraud Consultant (Concurrent)Jul 2018 \u2013 Apr 2025 Digikala (Parent Company) | Tehran, Iran Acted as the senior subject-matter expert for Digikala's 45-million-customer platform, advising finance, logistics, and legal teams on fraud and payments. Single-handedly built and managed complex reconciliation reports for the main platform, correlating data from multiple payment sources where internal teams failed. Developed rapid-response fraud interception plans; personally traced high-value stolen items in under 1 hour, interfacing with law enforcement. Consulted with Iran's Cyber Police (FATA) on behalf of Digikala, successfully negotiating new national regulations for 3-hour delivery systems. Senior Tech-Ops Analyst / AdministratorJul 2018 \u2013 Apr 2025 Digipay Co. (Digikala Group) | Tehran, Iran Owned and operated the entire Fraud & Judicial vertical for 7 years as a \"one-person division,\" managing a 10-year caseload of over 30,000+ inquiries. Served as the company's sole technical expert in 30+ judicial fraud cases, personally tracing money-laundering paths and training FATA officers. Reduced official fraud reporting time to FATA from 3 working days to under 3 hours by building new automated data-tracing flows. Dictated technical specifications and reconciliation patterns to external PSPs and Iran's National Payment Network (Shaparak). Engineered the company's first logging standards (Grok) and acted as the only engineer capable of deep-log debugging for 2+ years. Architected the company's first monitoring stack (Prometheus, Grafana) and owned 24/7 reliability for the Superapp, Wallet, and Payments verticals. Led the pre-development design of multi-party reconciliation solutions for all new fintech products (Wallets, C2C, Insuretech, Lendtech). Founding Operations Analyst / AdminSep 2016 \u2013 Jun 2018 Homapay Co. | Tehran, Iran Joined as one of the first 10 employees, single-handedly managing all operations, monitoring, and customer support for the startup. Manually operated and debugged all fintech platforms (C2C, billing, top-up), masking severe code deficiencies to maintain operational stability. Operational stability was a key factor in securing a 3x increase in investor funding and enabling the company's acquisition by Digikala. Mid Sales Area ManagerMay 2010 \u2013 Dec 2016 Gd Retail Sell | Tehran, Iran Directed a sales division of 30+ agents, holding full P&L responsibility for the area. Served as the sole translator and communications lead for international partners, negotiating contracts and aligning logistics. CEO / Board Member / AgentSep 2005 \u2013 Nov 2012 Aida Faraz Gostaresh | Tehran, Iran Founded and led an IT solutions consultancy, acquiring and managing a portfolio of 15+ SME clients. Architected, deployed, and administered mixed-network infrastructures (Windows, Red Hat) for all clients. Education B.S. Software EngineeringOct 2001 \u2013 Jun 2006 Islamic Azad University, South Tehran Branch"
+            },
+            {
+              "id": "2be3ae0b-02f0-40c7-955f-e71b7a2881bc",
+              "name": "JobKeywords",
+              "type": "string",
+              "value": "Technical Product Owner"
+            },
+            {
+              "id": "b062eed9-9fbd-4f45-9117-0ccd4b5d53db",
+              "name": "ExperienceLevel",
+              "type": "string",
+              "value": "mid_senior"
+            },
+            {
+              "id": "5808ab43-3551-42a0-b677-535b29bebf6c",
+              "name": "JobsToScrape",
+              "type": "number",
+              "value": 20
+            },
+            {
+              "id": "9076e2c5-2e23-41f5-bb73-04ab4534b960",
+              "name": "HomeLocation",
+              "type": "string",
+              "value": "55.2708,25.2048"
+            },
+            {
+              "id": "12b91df8-f52d-41b8-b18d-5d378942281f",
+              "name": "MaxCommuteMinutes",
+              "type": "number",
+              "value": 60
+            },
+            {
+              "id": "5d06b164-8c25-4e3d-8739-1900d9a4c7db",
+              "name": "TargetLanguage",
+              "type": "string",
+              "value": "English"
+            },
+            {
+              "id": "934fbe29-f5f0-4ca1-97ad-4e2c28e46b92",
+              "name": "Under10Applicants",
+              "type": "string",
+              "value": false
+            },
+            {
+              "id": "3f789658-2cfd-4c3e-9d7c-749d9e79fa65",
+              "name": "ActorId",
+              "type": "string",
+              "value": "apimaestro~linkedin-jobs-scraper-api"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9132bb71-72d8-41ac-89de-95bbd25bb204",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -4224,
+        -80
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/{{ $json.ActorId }}/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"date_posted\": \"day\",\n  \"experienceLevel\": {{ $json.ExperienceLevel.toJsonString() }},\n  \"keywords\": {{ $json.JobKeywords.toJsonString() }},\n  \"limit\": {{ $json.JobsToScrape }},\n  \"under_10_applicants\": {{ $json.Under10Applicants.toJsonString() }},\n  \"sort\": \"relevant\",\n  \"location\": \"100994116\",\n  \"page_number\": 1\n}",
+        "options": {}
+      },
+      "id": "4359bd24-9ddd-44ac-9aec-19cafba1c9ae",
+      "name": "Scrape LinkenIn Jobs",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -4000,
+        -80
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "kPpMOfAXl9FQhN5e",
+          "name": "Bearer Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "5d9215ec-7c99-4b73-96a4-d8d4f4dcf1a8",
+      "name": "Done!",
+      "type": "n8n-nodes-base.noOp",
+      "position": [
+        -3584,
+        -416
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\"jobLanguage\": \"English\",\n\"confirmed_seniority\": \"mid_senior\",\n\"is_match\": true\n}"
+      },
+      "id": "ae7d6974-8313-4d70-a82f-6a3ab6e5ebed",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        -3264,
+        192
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "d1f7b9b9-4fd1-44d2-b799-5fae8bcee7be",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.output.confirmed_seniority }}",
+              "rightValue": "={{ $('Config').item.json.ExperienceLevel }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8e0692e0-b155-403e-8b89-38e603dfaec2",
+      "name": "If Seniority Match",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        -2928,
+        -64
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an expert HR data analyst. Your task is to validate the seniority level of a job posting based on its full description.\n\nThe job was originally tagged with the seniority level: \"{{ $('Config').item.json.ExperienceLevel }}\"\n\nAnalyze the full job description below and determine if this tag is accurate.\n\nReturn ONLY a valid JSON object with these fields:\n- \"jobLanguage\": The primary language of the text.\n- \"confirmed_seniority\": The most accurate seniority level based on your analysis of the text. You MUST choose one from: [\"internship\", \"entry\", \"associate\", \"mid_senior\", \"director\", \"executive\"].\n- \"is_match\": A boolean (true/false) indicating if your confirmed_seniority matches the original tag.\n\nJob Description:\n\"\"\"\n{{ $('Items Loop').first().json.description }}\n\"\"\"",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "id": "9570ecdf-bcfd-4a16-a502-4a064fb412c4",
+      "name": "Deconstruct Job Data",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        -3424,
+        -64
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "09fadd6c-b339-4173-84f4-aa0b50e3706c",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "leftValue": "={{ $('Config').item.json.TargetLanguage.toLowerCase().split(', ').includes($('Deconstruct Job Data').item.json.output.jobLanguage.toLowerCase()) }}",
+              "rightValue": "={{ $json.output.jobLanguage.toLowerCase() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7d59eea4-f2b8-49ae-b4a2-523be4521ca6",
+      "name": "If Language Match",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        -2672,
+        -80
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "22e26442-d96a-48f2-89db-71d8f89237a5",
+      "name": "Google Gemini",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "position": [
+        -3440,
+        192
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "hla0eBIUWzBUi7Pz",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "cc07e487-97d5-4759-bc92-3f5f900fc251",
+      "name": "Google Gemini Deep Analysis",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "position": [
+        -1344,
+        160
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "hla0eBIUWzBUi7Pz",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"summary\": \"A 2-bullet point summary.\",\n  \"key_skills\": [\"skill1\",\"skill2\"],\n  \"match_score\": 5,\n  \"salaryInfo\": \"The extracted salary range\",\n  \"reasoning\": \"A one-sentence explanation for the score.\"\n}"
+      },
+      "id": "5de89099-421e-4029-a1e9-186a37d53f89",
+      "name": "Structured Output Parser Deep Analysis",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        -1152,
+        160
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "tableId": "job_tracker",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "jobTitle",
+              "fieldValue": "={{ $('Items Loop').first().json.job_title }}"
+            },
+            {
+              "fieldId": "companyName",
+              "fieldValue": "={{ $('Items Loop').first().json.company }}"
+            },
+            {
+              "fieldId": "matchScore",
+              "fieldValue": "={{ $json.output.match_score }}"
+            },
+            {
+              "fieldId": "aiSummary",
+              "fieldValue": "={{ $json.output.summary }}"
+            },
+            {
+              "fieldId": "jobURL",
+              "fieldValue": "={{ $('Items Loop').first().json.job_url }}"
+            },
+            {
+              "fieldId": "salaryInfo",
+              "fieldValue": "={{ $json.output.salaryInfo }}"
+            },
+            {
+              "fieldId": "aiReasoning",
+              "fieldValue": "={{ $json.output.reasoning }}"
+            },
+            {
+              "fieldId": "applyURL",
+              "fieldValue": "={{ $('Items Loop').first().json.apply_url }}"
+            }
+          ]
+        }
+      },
+      "id": "21892f50-8d1a-4e5c-a111-6f3b9699b7ad",
+      "name": "Save Data",
+      "type": "n8n-nodes-base.supabase",
+      "position": [
+        -752,
+        -80
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "supabaseApi": {
+          "id": "a05SViuJ5VzRJxrm",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "64d17e00-bada-41e9-918c-f507a1e59df9",
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              },
+              "leftValue": "={{ $('AI Deep Analysis').item.json.output.match_score }}",
+              "rightValue": 8
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5e53670f-fa90-4455-967c-f765d9d7bb56",
+      "name": "If Has High Match Score",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        -544,
+        -80
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Here is the candidate's resume and the job description. Please perform your analysis.\n---\n**Candidate's Resume:**\n\"\"\"\n{{ $('Config').first().json.MyCV }}\n\"\"\"\n---\n**Job Description:**\n\"\"\"\n{{ $('Items Loop').first().json.description }}\n\"\"\"",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=You are an expert career coach and HR specialist. Your task is to analyze a candidate's resume against a job description and provide a detailed, structured analysis.\n\nReturn ONLY a valid JSON object with the following structure:\n{\n  \"summary\": \"A 2-bullet point summary of the role's main responsibilities.\",\n  \"key_skills\": [\"An array of the top 5 most important skills required for this job.\"],\n  \"match_score\": \"An integer from 1 to 10 of how well the resume matches the job requirements.\",\n  \"salaryInfo\": \"The extracted salary range or the string 'Not specified' if no salary is mentioned.\",\n  \"reasoning\": \"A one-sentence explanation for the score, highlighting a key strength or a potential gap in the resume.\" You are a strict data extraction engine. You are NOT a chat assistant.\nAnalyze the candidate's resume against the job description.\n\nRULES FOR OUTPUT:\n1. You must return ONLY valid, raw JSON.\n2. Do NOT use Markdown formatting (no ```json or ``` blocks).\n3. Do NOT include any conversational text, headers, or explanations outside the JSON.\n4. Your response must start immediately with \"{\" and end with \"}\".\n5. If a field is missing information, use \"Not specified\" or null.\n\nReturn the JSON object with this exact structure:\n{\n  \"summary\": \"String\",\n  \"key_skills\": [\"Array\", \"of\", \"Strings\"],\n  \"match_score\": Integer (1-10),\n  \"salaryInfo\": \"String\",\n  \"reasoning\": \"String\"\n}\n}"
+        }
+      },
+      "id": "d791d0cf-f0e1-4905-bb12-f5738caba860",
+      "name": "AI Deep Analysis",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        -1328,
+        -80
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "9e8a1bee-c1d5-4d3c-914c-5c0bdc1e1286",
+      "name": "Items Loop",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        -3792,
+        -80
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "chatId": "109715946",
+        "text": "=\ud83d\udd25 <b>High-Match Job Found! ({{ $('AI Deep Analysis').item.json.output.match_score }}/10)</b>\n\n<b>{{ $('Items Loop').item.json.job_title }}</b> at <b>{{ $('Items Loop').item.json.company }}</b>\n\n<b>AI Reasoning:</b>\n<i>{{ $('AI Deep Analysis').item.json.output.reasoning }}</i>\n\n<b>Key Skills:</b>\n<code>{{ $('AI Deep Analysis').item.json.output.key_skills.join(', ') }}</code>\n\n<b>Salary:</b> <code>{{ $('AI Deep Analysis').item.json.output.salaryInfo }}</code>\n\n<a href=\"{{ $('Items Loop').item.json.apply_url }}\">Apply Here</a> | <a href=\"{{ $('Items Loop').item.json.job_url }}\">View Job Description</a>",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "c7db0af1-c496-4188-89fa-5f2c0a060902",
+      "name": "Send a Notification",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        -240,
+        -96
+      ],
+      "webhookId": "57ac8c41-a3bc-4b4e-8e22-adab496b2df0",
+      "typeVersion": 1.2,
+      "credentials": {
+        "telegramApi": {
+          "id": "pyJqtV7maUZ5ZuU2",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "id": "9078816c-d6f3-4d1c-9422-d1698c803c29",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        -4512,
+        -176
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {},
+      "id": "9ddbd161-fd6a-4e05-9384-c3039eafce23",
+      "name": "Manual Executing",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -4512,
+        32
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## \ud83e\udd16 AI Triage: The First Filter\nThis AI Agent acts as a quick HR screener. It reads the full job description and extracts key structured data (language, seniority, is match) that we use for the initial filtering steps. This is a fast and cheap way to eliminate bad fits.",
+        "height": 576,
+        "width": 560,
+        "color": 3
+      },
+      "id": "4b855c25-6f1e-468c-8c6e-96e0cd453d46",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -3584,
+        -256
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## \ud83e\udde0 AI Deep Analysis: The CV Match\nThis is the core intelligence of the co-pilot. For the highly-qualified jobs that passed all filters, this AI Agent compares the job description against my full CV (from the Config node). It generates a detailed summary, key skills, and a personalized match score.",
+        "height": 560,
+        "width": 592,
+        "color": 6
+      },
+      "id": "1c315673-c5dd-4251-bc7c-29eb86a050f6",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1504,
+        -256
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## \u2705 Action & Alerting\nThe final step. All qualified jobs are saved to the Supabase database. If the AI match_score is above the configured threshold (e.g., 8/10), a real-time, detailed alert is sent to my Telegram.",
+        "height": 352,
+        "width": 752
+      },
+      "id": "b9ef3934-f013-4640-95c3-4c781f3053c5",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -832,
+        -256
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "0a2dbbc3-5fb6-4eb6-8df8-381df0ccfa4a",
+      "name": "To The Next",
+      "type": "n8n-nodes-base.noOp",
+      "position": [
+        -16,
+        192
+      ],
+      "typeVersion": 1
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Scrape LinkenIn Jobs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Data": {
+      "main": [
+        [
+          {
+            "node": "If Has High Match Score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Items Loop": {
+      "main": [
+        [
+          {
+            "node": "Done!",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Deconstruct Job Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "To The Next": {
+      "main": [
+        [
+          {
+            "node": "Items Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Deconstruct Job Data",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Deep Analysis": {
+      "main": [
+        [
+          {
+            "node": "Save Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual Executing": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Language Match": {
+      "main": [
+        [
+          {
+            "node": "AI Deep Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Items Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Seniority Match": {
+      "main": [
+        [
+          {
+            "node": "If Language Match",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Items Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a Notification": {
+      "main": [
+        [
+          {
+            "node": "To The Next",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deconstruct Job Data": {
+      "main": [
+        [
+          {
+            "node": "If Seniority Match",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrape LinkenIn Jobs": {
+      "main": [
+        [
+          {
+            "node": "Items Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Has High Match Score": {
+      "main": [
+        [
+          {
+            "node": "Send a Notification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "To The Next",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Deconstruct Job Data",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Deep Analysis": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Deep Analysis",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser Deep Analysis": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Deep Analysis",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a100d462-3b0e-4487-896a-310188a97fc5",
+  "meta": {
+    "instanceId": "a266c94ae38593463837fcccb34fb1431f17c7953c3ee53ab7223ea48bd4570e"
+  },
+  "id": "m8PAWoFSDvU2ckII",
+  "tags": []
+}

@@ -166,7 +166,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://api.telegram.org/bot8456643422:AAEq2dcZutX1h485dRJ9iX_y7eRZJrZ_7NQ/sendMessage",
+        "url": "https://api.telegram.org/bot{{$env.TELEGRAM_BOT_TOKEN}}/sendMessage",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"chat_id\": \"109715946\",\n  \"text\": $json.telegram_payload,\n  \"parse_mode\": \"HTML\",\n  \"disable_web_page_preview\": true\n}",
