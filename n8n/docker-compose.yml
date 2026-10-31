@@ -13,6 +13,9 @@ services:
       - GENERIC_TIMEZONE=Asia/Tehran
       - TZ=Asia/Tehran
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - CRAWL4AI_API_BASE_URL=${CRAWL4AI_API_BASE_URL:-http://host.docker.internal:11235}
     volumes:
       - /home/fersta/n8n_data:/home/node/.n8n
     extra_hosts:

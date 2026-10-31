@@ -18,7 +18,11 @@ whoami() {
 }
 
 node() {
-  echo -e "\033[38;2;166;227;161m[ONLINE 200 OK]\033[0m ariya-sarrafzadeh.ir (RTT 12ms · 50K TPS Engine · SSL A+)"
+  if [ "$1" = "status:" ] || [ "$1" = "status" ] || [ "$#" -eq 0 ]; then
+    echo -e "\033[38;2;166;227;161m[ONLINE 200 OK]\033[0m ariya-sarrafzadeh.ir (RTT 12ms · 50K TPS Engine · SSL A+)"
+  else
+    command node "$@"
+  fi
 }
 
 sys() {

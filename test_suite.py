@@ -52,27 +52,30 @@ class TestAriyaSrfZRepository(unittest.TestCase):
                 except Exception as e:
                     self.fail(f"Invalid SVG XML in {path}: {e}")
 
-    def test_readme_local_links(self):
-        """Ensure all local file references in README.md exist on disk."""
-        readme_path = os.path.join(REPO_ROOT, "README.md")
-        self.assertTrue(os.path.isfile(readme_path), "README.md does not exist.")
-        with open(readme_path, "r", encoding="utf-8") as f:
-            content = f.read()
+    def test_markdown_local_links(self):
+        """Ensure all local file references in all markdown files exist on disk."""
+        md_files = glob.glob(os.path.join(REPO_ROOT, "**/*.md"), recursive=True)
+        self.assertGreater(len(md_files), 0, "No markdown files discovered in repository.")
+        for md_path in md_files:
+            with self.subTest(file=os.path.relpath(md_path, REPO_ROOT)):
+                with open(md_path, "r", encoding="utf-8") as f:
+                    content = f.read()
 
-        html_links = re.findall(r"(?:src|href)=[\"\x27]([^\"]+)[\"\x27]", content)
-        md_links = re.findall(r"\[.*?\]\((.*?)\)", content)
-        all_links = set(html_links + md_links)
+                html_links = re.findall(r"(?:src|href)=[\"\x27]([^\"]+)[\"\x27]", content)
+                md_links = re.findall(r"\[.*?\]\((.*?)\)", content)
+                all_links = set(html_links + md_links)
+                dir_name = os.path.dirname(md_path)
 
-        for link in all_links:
-            if link.startswith(("http://", "https://", "mailto:", "#")):
-                continue
-            clean_path = link.split("#")[0].split("?")[0]
-            if clean_path:
-                full_path = os.path.join(REPO_ROOT, clean_path)
-                self.assertTrue(
-                    os.path.exists(full_path),
-                    f"Broken local link in README.md: {link} (resolved to {full_path})"
-                )
+                for link in all_links:
+                    if link.startswith(("http://", "https://", "mailto:", "#")):
+                        continue
+                    clean_path = link.split("#")[0].split("?")[0]
+                    if clean_path:
+                        full_path = os.path.normpath(os.path.join(dir_name, clean_path))
+                        self.assertTrue(
+                            os.path.exists(full_path),
+                            f"Broken local link in {os.path.relpath(md_path, REPO_ROOT)}: {link} (resolved to {full_path})"
+                        )
 
     def test_shell_syntax(self):
         """Ensure all shell scripts pass `bash -n` syntax check."""
@@ -88,8 +91,8 @@ class TestAriyaSrfZRepository(unittest.TestCase):
                 self.assertEqual(res.returncode, 0, f"Syntax error in {script}: {res.stderr}")
 
     def test_setup_env_hooks(self):
-        """Ensure setup_env.sh defines expected functions and responds to spec queries."""
-        cmd = "source ./setup_env.sh && whoami --spec && node status: test && sys --query role && ariya-cli"
+        """Ensure setup_env.sh defines expected functions and allows normal Node.js CLI pass-through."""
+        cmd = "source ./setup_env.sh && whoami --spec && node status: test && sys --query role && ariya-cli && node -v"
         res = subprocess.run(
             ["bash", "-c", cmd],
             cwd=REPO_ROOT,
@@ -102,6 +105,20 @@ class TestAriyaSrfZRepository(unittest.TestCase):
         self.assertIn("ONLINE 200 OK", res.stdout)
         self.assertIn("ROLE:", res.stdout)
         self.assertIn("Core Rails:", res.stdout)
+        self.assertRegex(res.stdout, r"v\d+\.\d+\.\d+", "Node.js version pass-through failed")
+
+    def test_floorplan_js_syntax(self):
+        """Ensure all Floorplan JavaScript scripts pass Node syntax check."""
+        js_files = ["floorplan/query.mjs", "floorplan/serve.mjs"]
+        for js in js_files:
+            with self.subTest(file=js):
+                res = subprocess.run(
+                    ["node", "--check", js],
+                    cwd=REPO_ROOT,
+                    capture_output=True,
+                    text=True
+                )
+                self.assertEqual(res.returncode, 0, f"Node syntax error in {js}: {res.stderr}")
 
     def test_floorplan_query_cli(self):
         """Ensure floorplan/query.mjs overview and find work via node."""
@@ -125,6 +142,26 @@ class TestAriyaSrfZRepository(unittest.TestCase):
         self.assertEqual(find_res.returncode, 0, f"query.mjs find failed: {find_res.stderr}")
         find_data = json.loads(find_res.stdout)
         self.assertTrue(any("setup_env.sh" in item.get("path", "") for item in find_data))
+
+    def test_no_hardcoded_secrets_in_workflows(self):
+        """Ensure no raw Telegram bot tokens or unparameterized API keys exist in workflows."""
+        raw_token_pattern = re.compile(r"bot\d+:[A-Za-z0-9_-]{35}")
+        workflow_files = glob.glob(os.path.join(REPO_ROOT, "n8n/**/*.json"), recursive=True)
+        for wf in workflow_files:
+            with self.subTest(file=os.path.relpath(wf, REPO_ROOT)):
+                with open(wf, "r", encoding="utf-8") as f:
+                    content = f.read()
+                matches = raw_token_pattern.findall(content)
+                self.assertEqual(matches, [], f"Hardcoded bot token found in {wf}")
+
+    def test_env_example_presence(self):
+        """Ensure n8n/.env.example exists and documents required variables."""
+        example_path = os.path.join(REPO_ROOT, "n8n/.env.example")
+        self.assertTrue(os.path.isfile(example_path), "n8n/.env.example does not exist.")
+        with open(example_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        self.assertIn("TELEGRAM_BOT_TOKEN", content)
+        self.assertIn("CRAWL4AI_API_BASE_URL", content)
 
     def test_docker_compose_validity(self):
         """Ensure n8n/docker-compose.yml is valid according to docker compose config."""
