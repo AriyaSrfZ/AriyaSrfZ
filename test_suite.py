@@ -164,8 +164,12 @@ class TestAriyaSrfZRepository(unittest.TestCase):
         self.assertIn("CRAWL4AI_API_BASE_URL", content)
 
     def test_docker_compose_validity(self):
-        """Ensure n8n/docker-compose.yml is valid according to docker compose config."""
+        """Ensure n8n/docker-compose.yml is valid according to docker compose config if docker is available."""
+        import shutil
         compose_file = os.path.join(REPO_ROOT, "n8n/docker-compose.yml")
+        self.assertTrue(os.path.isfile(compose_file), "docker-compose.yml not found.")
+        if not shutil.which("docker"):
+            self.skipTest("docker binary not installed in environment")
         res = subprocess.run(
             ["docker", "compose", "-f", compose_file, "config"],
             cwd=REPO_ROOT,
